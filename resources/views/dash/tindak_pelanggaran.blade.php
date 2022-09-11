@@ -67,7 +67,7 @@
                                         <td>{{$dt->petugas}}</td>
                                         <td>{{$dt->jns_pelanggaran}}</td>
                                         <td>
-                                            <a href="{{url('/pdf_tindak_pelangggaran/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-print"></i></button></a>
+                                            <a href="{{url('/pdf_tindak_pelangggaran/'.$dt->id)}}" class="action-icon" target="_BLANK"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-print"></i></button></a>
                                             <a href="{{url('/unduh_pdf_tindak_pelangggaran/'.$dt->id)}}" class="action-icon" ><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a> 
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>  
                                            
