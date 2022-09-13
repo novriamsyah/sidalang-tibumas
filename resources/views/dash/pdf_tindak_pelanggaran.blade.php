@@ -115,7 +115,7 @@
           <tbody>
             <tr>
               <td data-title="Code" style="width: 100%; font-size:14px; padding-right:1em; text-align:justify; ">
-                <div style="border: 0.1px solid rgb(100, 100, 100); height:230px; overflow:hidden; padding: 0em 0.4em 0.4em 0.4em">
+                <div style="border: 0.1px solid rgb(100, 100, 100); height:200px; overflow:hidden; padding: 0em 0.4em 0.4em 0.4em">
                   {!!$doc_lihat->desk_pelanggaran!!}
                 </div>
               </td>
@@ -136,8 +136,9 @@
               </span>
               <span style="display:block;font-size:14px; margin-left:40px">
                 Kota Pangkalpinang
-              </span>
-              <br><br><br><br>
+              </span><br>
+              {{-- <br><br><br><br> --}}
+              <img src="https://user-images.githubusercontent.com/52773931/189720076-669b47d1-11fb-47a1-bd0f-20bb4273f14b.png" alt="" style="display:block; height:80px; width:155px"><br>
               <span style="font-size:14px;">
                Efran S.STP.,M.Tr.IP
               </span>
@@ -158,7 +159,7 @@
               <span style="font-size:14px; display:block; margin-left:-20px">
                 PETUGAS OPERASI
               </span>
-              <br><br><br><br><br>
+              <br><br><br><br><br><br>
               <span style="font-size:14px; margin-left:-20px">
                 {{$dt_petugas->nama}}
                </span>

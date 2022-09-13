@@ -63,15 +63,20 @@ Route::group(['middleware' => ['auth', 'cekrole:super_admin,kepala,anggota']], f
     Route::get('/form_tindak_pelanggaran', [App\Http\Controllers\DashboardController::class, 'formPelanggaran']);
     Route::get('/tindak_pelanggaran', [App\Http\Controllers\DashboardController::class, 'tndk_pelanggaran']);
     Route::post('/proses_tindak_pelanggaran', [App\Http\Controllers\DashboardController::class, 'proses_tindak_pelanggaran']);
+    Route::get('/edit_tindak_pelangggaran/{id}', [App\Http\Controllers\DashboardController::class, 'edit_tindak_pelangggaran']);
+    Route::post('/ubah_tindak_pelangggaran/{id}', [App\Http\Controllers\DashboardController::class, 'ubah_tindak_pelangggaran']);
     Route::get('/pdf_tindak_pelangggaran/{id}', [App\Http\Controllers\DashboardController::class, 'pdf_tindak_pelangggaran']);
     Route::get('/unduh_pdf_tindak_pelangggaran/{id}', [App\Http\Controllers\DashboardController::class, 'unduh_pelangggaran']);
     Route::post('/hapus_tindak_pelangggaran/{id}', [App\Http\Controllers\DashboardController::class, 'hapus_tindak_pelangggaran']);
     Route::post('/getkelurahan', [App\Http\Controllers\DashboardController::class, 'getkelurahan'])->name('getkelurahan');
 
+
     //halaman kegiatan
     Route::get('/upload_kegiatan', [App\Http\Controllers\DashboardController::class, 'upload_kegiatan']);
     Route::get('/laporan_kegiatan', [App\Http\Controllers\DashboardController::class, 'laporan_kegiatan']);
     Route::post('/simpan_laporan', [App\Http\Controllers\DashboardController::class, 'simpan_laporan']);
+    Route::get('/edit_laporan_kegiatan/{id}', [App\Http\Controllers\DashboardController::class, 'edit_laporan_kegiatan']);
+    Route::post('/ubah_laporan_kegiatan/{id}', [App\Http\Controllers\DashboardController::class, 'ubah_laporan_kegiatan']);
     Route::post('/hapus_laporan_kegiatan/{id}', [App\Http\Controllers\DashboardController::class, 'hapus_laporan_kegiatan']);
     Route::get('/lihat_dokumen/{id}', [App\Http\Controllers\DashboardController::class, 'lihat_dokumen']);
     Route::get('/unduh_laporan_kegiatan/{id}', [App\Http\Controllers\DashboardController::class, 'unduh_laporan_kegiatan']);

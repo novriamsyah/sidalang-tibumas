@@ -27,7 +27,7 @@ class SistemLoginController extends Controller
     	if(Auth::attempt($request->only('username', 'password')))
     	{
             // dd(Auth::user()->role);
-            Session::flash('berhasil_login', 'Kamu berhasil loginmke dashboar');
+            Session::flash('berhasil_login', 'Kamu berhasil login ke dashboar');
     		return redirect('/');
     	}
         Session::flash('gagal_login', 'Maaf username atau password anda salah');

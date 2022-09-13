@@ -36,10 +36,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Input Tindakan Pelanggaran</li>
+                    <li class="breadcrumb-item active">Edit Tindakan Pelanggaran</li>
                 </ol>
             </div>
-            <h4 class="page-title">Input Tindakan Pelanggaran</h4>
+            <h4 class="page-title">Edit Tindakan Pelanggaran</h4>
         </div>
     </div>
 </div> 
@@ -48,7 +48,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title" style="text-align: center; color:#000">Formulir Tindak Pelanggaran</h4>
-                <form action="{{url('/proses_tindak_pelanggaran')}}" method="post" enctype="multipart/form-data" name="form_plgrn">
+                <form action="{{url('/ubah_tindak_pelangggaran/'.$id)}}" method="post" enctype="multipart/form-data" name="form_plgrn_ubah">
                   @csrf
 
                   <input name="petugas" type="hidden" value="{{auth()->user()->nama}}">
@@ -59,18 +59,18 @@
                       <tr>
                         <td data-title="nama" style="width: 10%;">Nama</td>
                         <td >&nbsp;:</td>
-                        <td data-title="nama" class="formulir-border" style="width: 90%; padding-left:0.8em"><input name="nama" type="text" class="form-control" id="nama_ad" placeholder="Masukan nama"></td>
+                        <td data-title="nama" class="formulir-border" style="width: 90%; padding-left:0.8em"><input name="nama" type="text" value="{{$datas->nama}}" class="form-control" id="nama_ad" placeholder="Masukan nama"></td>
                       </tr>
                       <tr style="line-height: 1">
                         <td data-title="alamat" style="width: 10%;">Alamat</td>
                         <td >&nbsp;:</td>
                         <td data-title="alamat" class="formulir-border" style="width: 90%; padding-left:0.8em"><textarea name="alamat" data-toggle="maxlength" class="form-control" maxlength="225" rows="3" 
-                        placeholder="Masukan alamat" style="border: 1px solid rgb(161, 161, 161);"></textarea></td>
+                        placeholder="Masukan alamat" style="border: 1px solid rgb(161, 161, 161);">{{$datas->alamat}}</textarea></td>
                       </tr>
                       <tr>
                         <td data-title="nik" style="width: 10%;">No. Kartu Identitas</td>
                         <td >&nbsp;:</td>
-                        <td data-title="nama" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" class="form-control" name="nik" id="nik_ad" placeholder="Nomor KTP">
+                        <td data-title="nama" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" value="{{$datas->nik}}"  class="form-control" name="nik" id="nik_ad" placeholder="Nomor KTP">
                           <span id="error-nik" style="display: none; color:red"></span>
                         </td>
                       </tr>
@@ -81,20 +81,20 @@
                             {{-- <input type="file" class="form-control" name="fl_nik" id="nik_ad"> --}}
                             <div style="position: relative">
                               <label for="formFile3" class="new-button3">Upload KTP</label>
-                              <input class="form-control" type="file" id="formFile3" name="fl_nik" accept=".jpg, .jpeg, .png">
-                              <p style="word-break: break-word; border-bottom:1px solid rgb(161, 161, 161); width:100% "><span id="pendukung_lht"></span> </p>
+                              <input class="form-control" value="{{$datas->fl_nik}}" type="file" id="formFile3" name="fl_nik" accept=".jpg, .jpeg, .png">
+                              <p style="word-break: break-word; border-bottom:1px solid rgb(161, 161, 161); width:100% "><span id="pendukung_lht">{{$datas->fl_nik}}</span> </p>
                           </div>
                         </td>
                       </tr>
                       <tr>
                         <td data-title="pekerjaan" style="width: 10%;">Pekerjaan</td>
                         <td >&nbsp;:</td>
-                        <td data-title="pekerjaan" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" class="form-control" name="pekeerjaan" id="pekerjaan_ad" placeholder="Masukan pekerjaan"></td>
+                        <td data-title="pekerjaan" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" class="form-control" name="pekeerjaan" id="pekerjaan_ad" value="{{$datas->pekeerjaan}}"  placeholder="Masukan pekerjaan"></td>
                       </tr>
                       <tr>
                         <td data-title="nohp" style="width: 10%;">No. Handphone</td>
                         <td >&nbsp;:</td>
-                        <td data-title="nohp" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" class="form-control" name="nohp" id="nohp_ad" placeholder="Masukan nomor hp">
+                        <td data-title="nohp" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" class="form-control" name="nohp" value="{{$datas->nohp}}" id="nohp_ad" placeholder="Masukan nomor hp">
                           <span id="error-nohp" style="display: none; color:red"></span>
                         </td>
                       </tr>
@@ -103,10 +103,10 @@
                         <td >&nbsp;:</td>
                         <td data-title="jns_pelanggaran" class="formulir-border" style="width: 90%; padding-left:0.8em">
                           <select class="form-select mb-3" name="jns_pelanggaran" style="border: 1px solid rgb(161, 161, 161);">
-                          <option>---Pilih Jenis Pelanggran---</option>
-                          <option value="Pelanggaran Perda/Perkada">Pelanggaran Perda/Perkada</option>
-                          <option value="Gangguan Trantibum">Gangguan Trantibum</option>
-                          <option value="Penyakit Masyarakat">Penyakit Masyarakat</option>
+                          <option value="">---Pilih Jenis Pelanggran---</option>
+                          <option value="Pelanggaran Perda/Perkada" {{$datas->jns_pelanggaran == "Pelanggaran Perda/Perkada" ? 'selected' : ''}}>Pelanggaran Perda/Perkada</option>
+                          <option value="Gangguan Trantibum" {{$datas->jns_pelanggaran == "Gangguan Trantibum" ? 'selected' : ''}}>Gangguan Trantibum</option>
+                          <option value="Penyakit Masyarakat" {{$datas->jns_pelanggaran == "Penyakit Masyarakat" ? 'selected' : ''}}>Penyakit Masyarakat</option>
                           </select>
                         </td>
                       </tr>
@@ -115,7 +115,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="lks_pelanggaran" class="formulir-border" style="width: 90%; padding-left:0.8em">
                         <textarea name="lks_pelanggaran" data-toggle="maxlength" class="form-control" maxlength="225" rows="3" 
-                        placeholder="Masukan Lokasi Pelanggaran" style="border: 1px solid rgb(161, 161, 161);"></textarea>
+                        placeholder="Masukan Lokasi Pelanggaran" style="border: 1px solid rgb(161, 161, 161);">{{$datas->lks_pelanggaran}}</textarea>
                         </td>
                       </tr>
                       <tr>
@@ -124,22 +124,19 @@
                         <td data-title="lokasi" class="formulir-border" style="width: 90%; padding-left:0.8em">
                             <div class="row">
                               <div class="col-4">
-                                  {{-- <select class="form-select mb-3">
-                                      <option selected value="Pangkalpinang">Pangkalpinang</option>
-                                  </select> --}}
                                   <input type="text" value="Pangkalpinang" class="form-control" readonly>
                               </div>
                                 <div class="col-4">
                                     <select class="form-select mb-3" id="kecamatan" name="kecamatan" style="border: 1px solid rgb(161, 161, 161);">
                                         <option disabled selected value="">---Pilih Kecamatan---</option>
                                         @foreach ($kecamatan as $kc)
-                                        <option value="{{$kc->kecamatan}}" idAmbil="{{$kc->id}}" style="color:#000">{{$kc->kecamatan}}</option>
+                                        <option value="{{$kc->kecamatan}}" {{$kc->kecamatan == $datas->kecamatan ? 'selected' : ''}} idAmbil="{{$kc->id}}" style="color:#000">{{$kc->kecamatan}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-4">
                                   <select class="form-select mb-3" id="kelurahan" name="kelurahan" style="border: 1px solid rgb(161, 161, 161);">
-                                      <option>---Pilih Kelurahan---</option>
+                                      <option value="{{$datas->kelurahan}}">{{$datas->kelurahan}}</option>
                                   </select>
                               </div>
                             </div>
@@ -148,13 +145,13 @@
                       <tr>
                         <td data-title="sanksi" style="width: 10%;">Sanksi</td>
                         <td >&nbsp;:</td>
-                        <td data-title="sanksi" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" class="form-control" name="sanksi" id="sanksi_ad" placeholder="Masukan sanksi"></td>
+                        <td data-title="sanksi" class="formulir-border" style="width: 90%; padding-left:0.8em"><input type="text" class="form-control" name="sanksi" id="sanksi_ad" value="{{$datas->sanksi}}" placeholder="Masukan sanksi"></td>
                       </tr>
                       <tr>
                         <td data-title="desk_pelanggaran" style="width: 10%;">Deskripsi Pelanggaran</td>
                         <td >&nbsp;:</td>
                         <td class="formulir-border" style="width: 90%; padding-left:0.8em">
-                          <textarea name="desk_pelanggaran" id="ckeditor" cols="30" rows="10" class="isi"></textarea>                      
+                          <textarea name="desk_pelanggaran" id="ckeditor" cols="30" rows="10" class="isi">{!!$datas->desk_pelanggaran!!}</textarea>                      
                       </td>
                       </tr>
                       <tr>
@@ -261,13 +258,32 @@ crossorigin="anonymous"
         tapToDismiss:!1
     });
     @endif
+    @if ($message = Session::get('Gglubah'))
+    toastr.warning("{{ $message }}","Peringatan", {
+        timeOut:5e3,
+        closeButton:!0,
+        debug:!1,
+        newestOnTop:!0,
+        progressBar:!0,
+        positionClass:"toast-top-right",
+        preventDuplicates:!0,
+        onclick:null,
+        showDuration:"300",
+        hideDuration:"1000",
+        extendedTimeOut:"1000",
+        showEasing:"swing",
+        hideEasing:"linear",
+        showMethod:"fadeIn",
+        hideMethod:"fadeOut",
+        tapToDismiss:!1
+    });
+    @endif
     $(function() {
-          $("form[name='form_plgrn']").validate({
+          $("form[name='form_plgrn_ubah']").validate({
             rules: {
               username: "required",
               nama: "required",
               nik: "required",
-              fl_nik: "required",
               pekeerjaan: "required",
               nohp: "required",
               jns_pelanggaran: "required",
@@ -282,7 +298,6 @@ crossorigin="anonymous"
               username: "<span style='color: red;'>Username tidak boleh kosong</span>",
               nama: "<span style='color: red;'>Nama tidak boleh kosong</span>",
               nik: "<span style='color: red;'>Nomor KTP tidak boleh kosong</span>",
-              fl_nik: "<span style='color: red;'>file KTP tidak boleh kosong</span>",
               pekeerjaan: "<span style='color: red;'>Pekerjaan tidak boleh kosong</span>",
               nohp: "<span style='color: red;'>Nomor HP tidak boleh kosong</span>",
               jns_pelanggaran: "<span style='color: red;'>Jenis pelanggaran tidak boleh kosong</span>",

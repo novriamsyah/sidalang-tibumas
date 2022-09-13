@@ -69,6 +69,7 @@
                                         <td>
                                             <a href="{{url('/pdf_tindak_pelangggaran/'.$dt->id)}}" class="action-icon" target="_BLANK"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-print"></i></button></a>
                                             <a href="{{url('/unduh_pdf_tindak_pelangggaran/'.$dt->id)}}" class="action-icon" ><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a> 
+                                            <a href="{{url('/edit_tindak_pelangggaran/'.$dt->id)}}" class="action-icon" ><button type="button" class="btn btn-warning text-white btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-pencil"></i></button></a> 
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>  
                                            
                                             {{-- <a class="dropdown-item delete-confirm" onclick="deleteConfirmation({{$dt->id}})" role="button">Delete</a> --}}
@@ -137,11 +138,8 @@
                                         <td>{{$dt->petugas}}</td>
                                         <td>{{$dt->jns_pelanggaran}}</td>
                                         <td>
-                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px" disabled><i class="dripicons-print"></i></button></a>
-                                            <a href="#" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px" disabled><i class="dripicons-download"></i></button></a> 
-                                            <a class="action-icon delete-confirm"><button type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px" disabled><i class="dripicons-trash"></i></button></a>  
-                                           
-                                            {{-- <a class="dropdown-item delete-confirm" onclick="deleteConfirmation({{$dt->id}})" role="button">Delete</a> --}}
+                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-print"></i></button></a>
+                                            <a href="#" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a>  
                                         </td>
                                     </tr>
                                     <?php $num++ ?>
@@ -214,6 +212,46 @@ crossorigin="anonymous"
 
      @if ($message = Session::get('berhasil'))
     toastr.success("{{ $message }}","Selamat", {
+        timeOut:5e3,
+        closeButton:!0,
+        debug:!1,
+        newestOnTop:!0,
+        progressBar:!0,
+        positionClass:"toast-top-right",
+        preventDuplicates:!0,
+        onclick:null,
+        showDuration:"300",
+        hideDuration:"1000",
+        extendedTimeOut:"1000",
+        showEasing:"swing",
+        hideEasing:"linear",
+        showMethod:"fadeIn",
+        hideMethod:"fadeOut",
+        tapToDismiss:!1
+    });
+    @endif
+    @if ($message = Session::get('diubah'))
+    toastr.success("{{ $message }}","Selamat", {
+        timeOut:5e3,
+        closeButton:!0,
+        debug:!1,
+        newestOnTop:!0,
+        progressBar:!0,
+        positionClass:"toast-top-right",
+        preventDuplicates:!0,
+        onclick:null,
+        showDuration:"300",
+        hideDuration:"1000",
+        extendedTimeOut:"1000",
+        showEasing:"swing",
+        hideEasing:"linear",
+        showMethod:"fadeIn",
+        hideMethod:"fadeOut",
+        tapToDismiss:!1
+    });
+    @endif
+    @if ($message = Session::get('Gglubah'))
+    toastr.warning("{{ $message }}","Peringatan", {
         timeOut:5e3,
         closeButton:!0,
         debug:!1,

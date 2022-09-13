@@ -18,22 +18,30 @@
         <link rel="stylesheet" href="{{asset('assets/vendor/toastr/css/toastr.min.css')}}">
         <link href="{{ asset('assets/vendor/sweetalert/css/sweetalert.css') }}" rel="stylesheet">
         
-        
+        <style>
+            .auth-masuk {
+                background-image: url("https://user-images.githubusercontent.com/52773931/189719904-5c60d6c9-f9d5-48cd-a79e-7b4df85d5fed.JPG");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                overflow: hidden;
+            }
+        </style>
 
     </head>
 
-    <body class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <body class="loading auth-masuk" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
         <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
             <div class="container">
-                <div class="row" style="text-align: center">
-                      <div class="col-2" style="padding-top:15px">
+                <div class="row" style="text-align: center;background-color:aliceblue">
+                      <div class="col-xxl-2 col-lg-2" style="padding-top:15px">
                         <img src="https://user-images.githubusercontent.com/52773931/189068363-19d340bc-416a-4d07-9b1a-400404cd39c4.png" style="width: 95px; height:110px;">
                       </div>
-                      <div class="col-8">
-                        <h3 style="color: #000000">SELAMAT DATANG DI SIDALANG-TIBUMAS</h3><br>
-                        <h3 style="color: #000000">(SISTEM INFORMASI TINDAKAN PELANGGARAN KETERTIBAN UMUM DAN KETENTRAMAN MASYARAKAT)</h3>
+                      <div class="col-xxl-8 col-lg-8">
+                        <h3 style="color: #000000; font-weight:bold">SELAMAT DATANG DI SIDALANG-TIBUMAS</h3><br>
+                        <h3 style="color: #000000; font-weight:bold">(SISTEM INFORMASI TINDAKAN PELANGGARAN KETERTIBAN UMUM DAN KETENTRAMAN MASYARAKAT)</h3>
                       </div>
-                      <div class="col-2" style="padding-top: 15px">
+                      <div class="col-xxl-2 col-lg-2" style="padding-top: 15px">
                         <img src="https://user-images.githubusercontent.com/52773931/189069306-4ef7f70a-d2f2-4f60-83a8-8332f0b85bb8.png" style="width: 85px; height:110px;">
                       </div>
                 </div>
@@ -57,7 +65,7 @@
                                 @endif
                                 
                                 <div class="text-center w-75 m-auto">
-                                    <h4 class="text-dark-50 text-center pb-0 fw-bold">Login</h4>
+                                    <h4 class="text-dark-50 text-center pb-0 fw-bold" style="font-weight: bold; color:#000000">Login</h4>
                                 </div>
 
                                 <form action="{{url('/login_verifikasi')}}" method="POST" name="form_login">
@@ -65,15 +73,15 @@
                                     @csrf
 
                                     <div class="mb-3">
-                                        <label for="emailaddress" class="form-label">Username</label>
-                                        <input class="form-control" type="text" id="username" required name="username" placeholder="Masukan username">
+                                        <label for="emailaddress" class="form-label" style="font-weight: bold;color:#000000">Username</label>
+                                        <input class="form-control" type="text" id="username" required name="username" placeholder="Masukan username" style="border: 1px solid rgb(161, 161, 161);">
                                     </div>
 
                                     <div class="mb-3">
-                                        <a href="{{route('forget.password.get')}}" class="text-muted float-end"><small>Lupa Password?</small></a>
-                                        <label for="password" class="form-label">Password</label>
+                                        <a href="{{route('forget.password.get')}}" class="text-muted float-end"><small style="font-weight: bold;color:#000000">Lupa Password?</small></a>
+                                        <label for="password" class="form-label" style="font-weight: bold;color:#000000">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" name="password" class="form-control" placeholder="Masukan password">
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Masukan password" style="border: 1px solid rgb(161, 161, 161);">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>

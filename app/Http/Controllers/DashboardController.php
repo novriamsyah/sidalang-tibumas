@@ -132,6 +132,69 @@ class DashboardController extends Controller
         
     }
 
+    public function edit_tindak_pelangggaran($id)
+    {
+        $kecamatan =  DB::table('kecamatan')->select('kecamatan.*')
+        ->get();
+        $datas = Pelanggaran::find($id);
+        return view('dash.edit_tindak_pelanggaran', ['datas'=>$datas, 'id'=>$id, 'kecamatan'=>$kecamatan]);
+    }
+
+    public function ubah_tindak_pelangggaran(Request $req, $id)
+    {
+        $req->validate([
+            'fl_nik' => 'mimes:jpeg,jpg,png'
+        ]);
+
+        $data_id = Pelanggaran::findOrFail($id);
+
+        if ($req->hasFile('fl_nik')) {
+
+            $file_ktp = $req->file('fl_nik');
+            $file_ktp->move(public_path('file/'), $file_ktp->getClientOriginalName());
+
+            $data_id->update([
+            'nama' => $req->nama,
+            'petugas' => $req->petugas,
+            'nik' => $req->nik,
+            'pekeerjaan' => $req->pekeerjaan,
+            'fl_nik' => $file_ktp->getClientOriginalName(),
+            'nohp' => $req->nohp,
+            'jns_pelanggaran' => $req->jns_pelanggaran,
+            'lks_pelanggaran' => $req->lks_pelanggaran,
+            'kelurahan' => $req->kelurahan,
+            'kecamatan' => $req->kecamatan,
+            'sanksi' => $req->sanksi,
+            'alamat' => $req->alamat,
+            'desk_pelanggaran' => $req->desk_pelanggaran,
+            ]);
+
+        } else {
+            $data_id->update([
+            'nama' => $req->nama,
+            'petugas' => $req->petugas,
+            'nik' => $req->nik,
+            'pekeerjaan' => $req->pekeerjaan,
+            'nohp' => $req->nohp,
+            'jns_pelanggaran' => $req->jns_pelanggaran,
+            'lks_pelanggaran' => $req->lks_pelanggaran,
+            'kelurahan' => $req->kelurahan,
+            'kecamatan' => $req->kecamatan,
+            'sanksi' => $req->sanksi,
+            'alamat' => $req->alamat,
+            'desk_pelanggaran' => $req->desk_pelanggaran,
+            ]);
+        }
+
+        if($data_id) {
+            Session::flash('diubah', 'Data tindak pelanggaran berhasil diubah');
+            return redirect('/tindak_pelanggaran');
+        } else {
+            Session::flash('Gglubah', 'Data tindak pelanggaran gagal diubah');
+            return redirect()->back();
+        }
+    }
+
     public function upload_kegiatan()
     {
         return view('dash.upl_kegiatan');
@@ -175,6 +238,46 @@ class DashboardController extends Controller
             return view('dash.laporan_kegiatan', ['datas'=>$query]);
         }
        
+    }
+
+    public function edit_laporan_kegiatan($id)
+    {
+        $kegiatan = Kegiatan::find($id);
+        return view('dash.edit_laporan_kegiatan', ['id'=>$id, 'kegiatan'=>$kegiatan]);
+    }
+
+    public function ubah_laporan_kegiatan(Request $req, $id)
+    {
+        $req->validate([
+            'file_kegiatan' => 'mimes:pdf'
+        ]);
+
+        $kegiatan = Kegiatan::findOrFail($id);
+
+        if ($req->hasFile('file_kegiatan')){
+            $file_laporan = $req->file('file_kegiatan');
+            $unik = uniqid() . '.' .  $req->file('file_kegiatan')->getClientOriginalExtension();
+            $file_laporan->move(public_path('laporan_file/'), $unik);
+
+            $kegiatan->update([
+               'petugas' => $req->petugas,
+               'file_kegiatan' => $unik,
+               'nama_file' => $req->nama_file,
+            ]);
+        } else {
+            $kegiatan->update([
+                'petugas' => $req->petugas,
+                'nama_file' => $req->nama_file,
+             ]);
+        }
+
+        if($kegiatan) {
+            Session::flash('diubah', 'Data laporan kegiatan berhasil diubah');
+            return redirect('/laporan_kegiatan');
+        } else {
+            Session::flash('gagal', 'Data laporan kegiatan gagal diubah');
+            return redirect()->back();
+        }
     }
 
     public function pdf_tindak_pelangggaran($id)

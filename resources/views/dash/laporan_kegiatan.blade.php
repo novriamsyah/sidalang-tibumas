@@ -55,6 +55,7 @@
                                         <td class="table-action" style="width: 20%">
                                             <a href="#" class="action-icon"><button type="button" class="btn btn-dark lihat_pdf" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i></button></a>
                                             <a href="{{url('/unduh_laporan_kegiatan/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a>
+                                            <a href="{{url('/edit_laporan_kegiatan/'.$dt->id)}}" class="action-icon" ><button type="button" class="btn btn-warning text-white btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-pencil"></i></button></a> 
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>  
                                         </td>
                                     </tr>
@@ -128,9 +129,8 @@
                                         <td style="width: 10%">{{$num}}.</td>
                                         <td style="word-break:break-word; width:70%">{{$dt->nama_file}}</td>
                                         <td class="table-action" style="width: 20%">
-                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark lihat_pdf" style="display: inline-block; margin-top:8px" disabled><i class="dripicons-preview"></i></button></a>
-                                            <a href="" class="action-icon"><button type="button" class="btn btn-primary" style="display: inline-block; margin-top:8px" disabled><i class="dripicons-download"></i></button></a>
-                                            <a class="action-icon delete-confirm"><button type="button" class="btn btn-danger" style="display: inline-block; margin-top:8px" disabled><i class="dripicons-trash"></i></button></a>  
+                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark lihat_pdf" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i></button></a>
+                                            <a href="" class="action-icon"><button type="button" class="btn btn-primary" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a>
                                         </td>
                                     </tr>
                                     <?php $num++ ?>
@@ -149,7 +149,7 @@
     <div class="modal-dialog modal-full-width">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="fullWidthModalLabel">Laporan Kegiatan</h4>
+                <h4 class="modal-title" id="fullWidthModalLabel">Laporan Kegiatan </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -185,6 +185,26 @@
 </script>
 <script>
      @if ($message = Session::get('berhasil'))
+    toastr.success("{{ $message }}","Selamat", {
+        timeOut:5e3,
+        closeButton:!0,
+        debug:!1,
+        newestOnTop:!0,
+        progressBar:!0,
+        positionClass:"toast-top-right",
+        preventDuplicates:!0,
+        onclick:null,
+        showDuration:"300",
+        hideDuration:"1000",
+        extendedTimeOut:"1000",
+        showEasing:"swing",
+        hideEasing:"linear",
+        showMethod:"fadeIn",
+        hideMethod:"fadeOut",
+        tapToDismiss:!1
+    });
+    @endif
+    @if ($message = Session::get('diubah'))
     toastr.success("{{ $message }}","Selamat", {
         timeOut:5e3,
         closeButton:!0,
@@ -247,7 +267,8 @@
             success:function(response) {
             //   console.log(response);
             var linkUrl = encodeURIComponent(response.file_kegiatan);
-              var lihat =  $('.lihat_dokumen').attr('src', "http://docs.google.com/gview?url={{asset('/laporan_file')}}/"+linkUrl+"&embedded=true");
+            //   var lihat =  $('.lihat_dokumen').attr('src', "http://docs.google.com/gview?url={{asset('/laporan_file')}}/"+linkUrl+"&embedded=true");
+            var lihat =  $('.lihat_dokumen').attr('src', "/laporan_file/"+linkUrl);
 
             }
         })
