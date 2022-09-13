@@ -129,8 +129,8 @@
                                         <td style="width: 10%">{{$num}}.</td>
                                         <td style="word-break:break-word; width:70%">{{$dt->nama_file}}</td>
                                         <td class="table-action" style="width: 20%">
-                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark lihat_pdf" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i></button></a>
-                                            <a href="" class="action-icon"><button type="button" class="btn btn-primary" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a>
+                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark lihat_pdf" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i></button></a>
+                                            <a href="{{url('/unduh_laporan_kegiatan/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a>
                                         </td>
                                     </tr>
                                     <?php $num++ ?>

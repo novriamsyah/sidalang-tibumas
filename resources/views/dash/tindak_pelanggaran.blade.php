@@ -138,8 +138,8 @@
                                         <td>{{$dt->petugas}}</td>
                                         <td>{{$dt->jns_pelanggaran}}</td>
                                         <td>
-                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-print"></i></button></a>
-                                            <a href="#" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a>  
+                                            <a href="{{url('/pdf_tindak_pelangggaran/'.$dt->id)}}" class="action-icon" target="_BLANK"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-print"></i></button></a>
+                                            <a href="{{url('/unduh_pdf_tindak_pelangggaran/'.$dt->id)}}" class="action-icon" ><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a> 
                                         </td>
                                     </tr>
                                     <?php $num++ ?>
