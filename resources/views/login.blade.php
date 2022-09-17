@@ -24,13 +24,13 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
-                overflow: hidden;
+                /* overflow: hidden; */
             }
         </style>
 
     </head>
 
-    <body class="loading auth-masuk" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <body class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
         <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
             <div class="container">
                 <div class="row" style="text-align: center;background-color:aliceblue">
